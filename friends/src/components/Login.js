@@ -5,27 +5,15 @@ import axios from 'axios';
 // Password = 'i<3Lambd4'
 // Token = 'esf...QifQ'
 
-
-const Login = () => {
-  // const [username, setUsername] = useState("");
-  // const [password, setPassword] = useLocalStorage("");
-  // const [token, useToken] = useLocalStorage("");
+const Login = (props) => {
   const [credentials, setCredentials] = useState({
       username: "Lambda School",
-      password: "i<3Lambd4" 
+      password: "i<3Lambd4" //TODO: Remove before deployment
   });
   
-  const handleChange = prop => event => {
-    setCredentials({ ...credentials, [prop]: event.target.value });
+  const handleChange = props => event => {
+    setCredentials({ ...credentials, [props]: event.target.value });
   };
-  // const handleChange = prop => e => {
-  //   setCredentials({
-  //     // [e.target.name]: e.target.value
-  //     ...credentials, [prop]: e.target.value
-  //   });
-  // }
-
-
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -34,8 +22,8 @@ const Login = () => {
     .post("http://localhost:5000/api/login", credentials)
     .then(res => {
       console.log('response', res);
-      localStorage.setItem("token", res.data.payload)
-      // props.history.push('/')
+      localStorage.setItem("token", res.data.payload);
+      props.history.push('/friends');
     })
     .catch(err => {
       console.error('Error', err);
