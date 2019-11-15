@@ -1,4 +1,4 @@
-import React, { useState, useLocalStorage } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 // Username = 'Lambda School'
@@ -28,12 +28,6 @@ const Login = (props) => {
     .catch(err => {
       console.error('Error', err);
     });
-  }
-
-
-  // TODO: remove duplicate code
-  const isAuthenticated = () => {
-    return localStorage.getItem("token") ? true : false;
   }
 
   return (

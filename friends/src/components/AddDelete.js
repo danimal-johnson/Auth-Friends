@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 export default function AddDelete (props) {
-  const [friendData, setFriendData] = ({
+  const [friendData, setFriendData] = useState({
     name: '',
     age: 0,
     email: '',
@@ -41,15 +41,15 @@ export default function AddDelete (props) {
       console.log('Result of Delete:', res);
     })
     .catch(err => {
-      console.error('Error', err);
+      console.error('Deletion error', err);
     });
   }
 
   return (
     <div className="formDiv">
-      <h2>Friend Add/Delete form</h2>
+      <h2>Add/Delete Friend</h2>
       <form>
-        Login:<br />
+        Name:<br />
         <input
           type="text"
           name="name"
@@ -57,9 +57,9 @@ export default function AddDelete (props) {
           onChange={handleChange("name")}
         />
         <br />
-        Password:<br />
+        Email:<br />
         <input
-          type="text"
+          type="email"
           name="email"
           value={friendData.email}
           onChange={handleChange("email")}
@@ -70,13 +70,14 @@ export default function AddDelete (props) {
           value="Add"
           onClick={handleAdd}>Add Friend
         </button>
-        <br /><hr /><br />
+        <br /><br />
         <input
           type="text"
           name="id"
           value={friendData.id}
           onChange={handleChange("id")}
         />
+        <br /><br />
         <button
           type="button"
           value="Delete"

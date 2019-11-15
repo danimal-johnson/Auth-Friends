@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-// import AddDelete from './AddDelete';
+import AddDelete from './AddDelete';
 
 const axiosWithAuth =() => {
   const token = localStorage.getItem('token');
@@ -30,13 +30,13 @@ const FriendList = () => {
   },[])
 
   return (
-    <div className="friendlyPeeps">
-      <h1>These are your friends:</h1>
-      <h2>(Protected)</h2>
-      
+    <div className="friend-list">
+      <AddDelete />
+      <h1>Your friends:</h1>
+      <button type="button" onClick={ () => {localStorage.clear()} } >Log Out</button>
       <ul>
         {friendData.map(friend => {
-          return <li>{friend.name}</li>
+          return <li key={friend.id}>{friend.name}</li>
         })}
       </ul>
     </div>
